@@ -1,0 +1,104 @@
+---
+clean:
+  src: "../../../dist"
+  subTasks:
+  - patterns:
+    - "**/*.html"
+    - "**/*.xml"
+    - "**/*.txt"
+    task: html
+  - patterns:
+    - "**/*.css"
+    - "**/*.css.map"
+    task: css
+  - patterns:
+    - "**/*.js"
+    - "**/*.js.map"
+    task: js
+  - patterns:
+    - "**/*.jpg"
+    task: assets
+
+server:
+  port: '3000'
+  path: "../../../dist"
+
+scss:
+  src: "../../../src/scss"
+  dest: "../../../dist/assets/css"
+  minify: true
+
+js:
+  src: "../../../src/js"
+  dest: "../../../dist/assets/js"
+  minify: true
+
+assets:
+  "../../../src/content/journal/**/*.jpg": "../../../dist/journal"
+
+html:
+  src:
+    content: "../../../src/content"
+    templates: "../../../src/templates"
+    assets: "../../../dist/assets"
+  dest: "../../../dist"
+
+sitemap:
+  src: "../../../dist"
+  patterns:
+  - "**/*.html"
+  - "!**/404.html"
+  - "!**/500.html"
+  dest: "../../../dist/sitemap.xml"
+  robots: "../../../dist/robots.txt"
+  site: https://tom.van.enckevort.org
+
+watch:
+  root: "../../../"
+  watches:
+  - patterns:
+    - src/content/**/*.md
+    on: 
+    - delete
+    task: clean|html
+  - patterns:
+    - src/scss/**/*.scss
+    on:
+    - delete
+    - change
+    task: clean|css
+  - patterns:
+    - src/js/**/*.js
+    on:
+    - change
+    task: clean|js
+  - patterns:
+    - src/images/**/*
+    on:
+    - delete
+    task: clean|assets
+  - patterns:
+    - src/templates/**/*.hbs
+    - src/content/**/*.md
+    task: html
+  - patterns:
+    - src/scss/**/*.scss
+    task: scss
+  - patterns:
+    - src/js/**/*.js
+    task: js
+  - patterns:
+    - src/images/**/*
+    task: assets
+  - patterns:
+    - dist/**/*.html
+    task: sitemap
+
+default:
+- scss
+- js
+- assets
+- html
+- sitemap
+- watch
+- server

@@ -1,0 +1,22 @@
+﻿<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+	<Application>
+		<Assembly Name="Handlebars">
+			<Type Name="HandlebarsDotNet.ObjectDescriptors.StringDictionaryObjectDescriptorProvider">
+				<Method Name="CreateDescriptor">
+					<GenericArgument Name="System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.Object, System.Private.CoreLib]], System.Private.CoreLib" />
+					<GenericArgument Name="System.Object, System.Private.CoreLib" />
+				</Method>
+			</Type>
+			<Type Name="HandlebarsDotNet.ObjectDescriptors.EnumerableObjectDescriptor">
+				<Method Name="ArrayObjectDescriptorFactory">
+					<GenericArgument Name="System.Object, System.Private.CoreLib" />
+				</Method>
+				<Method Name="ListObjectDescriptorFactory">
+					<GenericArgument Name="System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib]], System.Private.CoreLib" />
+					<GenericArgument Name="System.Object, System.Private.CoreLib" />
+				</Method>
+			</Type>
+			<Type Name="HandlebarsDotNet.MemberAccessors.EnumerableAccessors.ListMemberAccessor`2[[System.Collections.Generic.IList`1[[System.Object, System.Private.CoreLib]], System.Private.CoreLib],[System.Object, System.Private.CoreLib]]" Dynamic="Required All" />
+		</Assembly>
+	</Application>
+</Directives>
