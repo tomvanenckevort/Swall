@@ -12,7 +12,7 @@ using Swall.Markdown;
 
 namespace Swall.Tasks
 {
-    internal class HtmlTask : SwallTask
+    internal sealed class HtmlTask : SwallTask
     {
         private readonly string contentSrc;
         private readonly string templatesSrc;

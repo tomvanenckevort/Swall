@@ -8,7 +8,7 @@ using Swall.IO;
 
 namespace Swall.Tasks
 {
-    internal class CleanTask : SwallTask
+    internal sealed class CleanTask : SwallTask
     {
         private readonly string src;
         private readonly IReadOnlyDictionary<string, string[]> subTasks;

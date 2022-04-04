@@ -11,7 +11,7 @@ using Swall.Server;
 
 namespace Swall.Tasks
 {
-    internal class ServerTask : SwallTask
+    internal sealed class ServerTask : SwallTask
     {
         private readonly int port;
         private readonly string path;

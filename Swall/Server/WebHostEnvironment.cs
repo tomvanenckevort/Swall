@@ -6,7 +6,7 @@ namespace Swall.Server
     /// <summary>
     /// Minimal web host environment class used by Kestrel middleware.
     /// </summary>
-    internal class WebHostEnvironment : IWebHostEnvironment
+    internal sealed class WebHostEnvironment : IWebHostEnvironment
     {
         public string WebRootPath { get; set; }
         public IFileProvider WebRootFileProvider { get; set; }

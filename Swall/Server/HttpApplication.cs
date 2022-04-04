@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace Swall.Server
 {
-    internal class HttpApplication : IHttpApplication<HttpContext>
+    internal sealed class HttpApplication : IHttpApplication<HttpContext>
     {
         private readonly DefaultFilesMiddleware defaultFilesMiddleware;
 

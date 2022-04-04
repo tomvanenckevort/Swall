@@ -11,7 +11,7 @@ using Swall.IO;
 
 namespace Swall.Tasks
 {
-    internal class JsTask : SwallTask
+    internal sealed class JsTask : SwallTask
     {
         private readonly string src;
         private readonly string dest;

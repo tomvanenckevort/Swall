@@ -10,7 +10,7 @@ using Swall.Yaml;
 
 namespace Swall.Markdown
 {
-    internal class MarkdownParser
+    internal sealed class MarkdownParser
     {
         private readonly MarkdownPipeline pipeline;
 

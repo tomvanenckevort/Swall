@@ -8,7 +8,7 @@ using Swall.Runner;
 
 namespace Swall.Tasks
 {
-    internal class WatchTask : SwallTask
+    internal sealed class WatchTask : SwallTask
     {
         private readonly string root;
         private readonly IReadOnlyDictionary<string, (string[] Patterns, string[] On)> watches;

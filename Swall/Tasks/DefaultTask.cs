@@ -5,7 +5,7 @@ using Swall.Runner;
 
 namespace Swall.Tasks
 {
-    internal class DefaultTask : SwallTask
+    internal sealed class DefaultTask : SwallTask
     {
         private readonly string[] defaultTaskNames;
 

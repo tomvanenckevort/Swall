@@ -5,7 +5,7 @@ using SharpYaml.Serialization;
 
 namespace Swall.Yaml
 {
-    internal class YamlDeserializer
+    internal sealed class YamlDeserializer
     {
         /// <summary>
         /// Deserializes YAML string and returns a dictionary containing the YAML keys and values.

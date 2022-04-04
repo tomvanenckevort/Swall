@@ -9,7 +9,7 @@ namespace Swall.Markdown
     /// <summary>
     /// Adds noopener/noreffer rel attribute to any external links.
     /// </summary>
-    internal class ExternalLinksMarkdownExtension : IMarkdownExtension
+    internal sealed class ExternalLinksMarkdownExtension : IMarkdownExtension
     {
         public void Setup(MarkdownPipelineBuilder pipeline)
         {

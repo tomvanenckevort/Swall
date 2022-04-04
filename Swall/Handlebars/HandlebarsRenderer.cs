@@ -13,7 +13,7 @@ using Swall.Markdown;
 
 namespace Swall.Handlebars
 {
-    internal class HandlebarsRenderer
+    internal sealed class HandlebarsRenderer
     {
         private readonly DirectoryInfo templatesSrcDirectory;
         private readonly DirectoryInfo assetsSrcDirectory;

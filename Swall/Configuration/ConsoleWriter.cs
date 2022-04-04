@@ -2,7 +2,7 @@
 
 namespace Swall.Configuration
 {
-    internal class ConsoleWriter
+    internal sealed class ConsoleWriter
     {
         private static readonly object consoleLock = new();
 

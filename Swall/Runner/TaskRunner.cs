@@ -11,7 +11,7 @@ using Swall.Yaml;
 
 namespace Swall.Runner
 {
-    internal class TaskRunner
+    internal sealed class TaskRunner
     {
         private readonly IReadOnlyDictionary<string, SwallTask> availableTasks;
 

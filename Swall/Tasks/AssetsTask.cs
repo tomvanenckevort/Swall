@@ -8,7 +8,7 @@ using Swall.IO;
 
 namespace Swall.Tasks
 {
-    internal class AssetsTask : SwallTask
+    internal sealed class AssetsTask : SwallTask
     {
         private readonly IReadOnlyDictionary<string, string> paths;
 

@@ -8,7 +8,7 @@ using Swall.IO;
 
 namespace Swall.Assets
 {
-    internal class HashGenerator
+    internal sealed class HashGenerator
     {
         /// <summary>
         /// Placeholder used during the file content generation and to be replaced with the generated hash afterwards.

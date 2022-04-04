@@ -10,7 +10,7 @@ using Swall.IO;
 
 namespace Swall.Tasks
 {
-    internal class ScssTask : SwallTask
+    internal sealed class ScssTask : SwallTask
     {
         private readonly string src;
         private readonly string dest;

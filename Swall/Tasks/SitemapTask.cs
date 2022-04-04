@@ -12,7 +12,7 @@ using Swall.IO;
 
 namespace Swall.Tasks
 {
-    internal class SitemapTask : SwallTask
+    internal sealed class SitemapTask : SwallTask
     {
         private readonly string src;
         private readonly string[] patterns;
