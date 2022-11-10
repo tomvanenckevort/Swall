@@ -44,7 +44,7 @@ namespace Swall.IO
                 }
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
             finally

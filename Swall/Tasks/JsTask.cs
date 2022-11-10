@@ -76,7 +76,7 @@ namespace Swall.Tasks
                 if (minify)
                 {
                     using var sourceMapWriter = new StringWriter();
-                    using var sourceMap = new V3SourceMap(sourceMapWriter);
+                    var sourceMap = new V3SourceMap(sourceMapWriter);
 
                     sourceMap.StartPackage(outputFilePath, sourceMapFilePath);
 

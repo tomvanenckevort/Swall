@@ -31,7 +31,7 @@ namespace Swall.Tasks
                                 k => k["task"]?.ToString(),
                                 v => (
                                     (v["patterns"] as object[])?.Select(p => p.ToString()).ToArray(),
-                                    ((v.ContainsKey("on") ? v["on"] : null) as object[])?.Select(p => p.ToString()).ToArray()
+                                    ((v.TryGetValue("on", out var on) ? on : null) as object[])?.Select(p => p.ToString()).ToArray()
                                 )
                             );
 

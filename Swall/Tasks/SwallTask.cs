@@ -25,11 +25,23 @@ namespace Swall.Tasks
         }
 
         /// <summary>
-        /// Dispose the semaphore object.
+        /// Dispose method.
         /// </summary>
         public void Dispose()
         {
-            taskSemaphore.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose the semaphore object.
+        /// </summary>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                taskSemaphore.Dispose();
+            }
         }
 
         /// <summary>

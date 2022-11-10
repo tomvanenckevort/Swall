@@ -155,7 +155,7 @@ namespace Swall.Handlebars
 
                         pages.Add(page);
 
-                        if (hash.ContainsKey("pageFields") && hash["pageFields"] is string[] pageFields)
+                        if (hash.TryGetValue("pageFields", out var pageFieldsObj) && pageFieldsObj is string[] pageFields)
                         {
                             foreach (var pageField in pageFields)
                             {
@@ -200,13 +200,13 @@ namespace Swall.Handlebars
                 return;
             }
 
-            foreach (var match in partialMatchResults.Files)
+            foreach (var path in partialMatchResults.Files.Select(m => m.Path))
             {
-                var file = new FileInfo(Path.GetFullPath(match.Path, templatesSrcDirectory.FullName));
+                var file = new FileInfo(Path.GetFullPath(path, templatesSrcDirectory.FullName));
 
-                var partialPath = match.Path
-                                        .Replace("partials/", string.Empty)
-                                        .Replace(file.Extension, string.Empty);
+                var partialPath = path
+                                    .Replace("partials/", string.Empty)
+                                    .Replace(file.Extension, string.Empty);
 
                 var input = await FileAccessor.ReadAllText(file.FullName);
 

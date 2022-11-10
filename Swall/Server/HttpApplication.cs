@@ -62,6 +62,7 @@ namespace Swall.Server
 
         public void DisposeContext(HttpContext context, Exception exception)
         {
+            ArgumentNullException.ThrowIfNull(context);
         }
 
         /// <summary>

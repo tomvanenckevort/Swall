@@ -19,6 +19,7 @@ namespace Swall.Markdown
 
         public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)
         {
+            // Constructor not used in this case
         }
 
         private void Pipeline_DocumentProcessed(MarkdownDocument document)

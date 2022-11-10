@@ -61,9 +61,9 @@ namespace Swall.Tasks
 
             var cleanMatchResult = cleanMatcher.Execute(new DirectoryInfoWrapper(srcDirectory));
 
-            foreach (var match in cleanMatchResult.Files)
+            foreach (var path in cleanMatchResult.Files.Select(m => m.Path))
             {
-                var matchPath = Path.GetFullPath(match.Path, srcDirectory.FullName);
+                var matchPath = Path.GetFullPath(path, srcDirectory.FullName);
 
                 if (subTask != "js" && subTask != "css" && parameters != null && matchPath != parameters)
                 {
@@ -71,7 +71,7 @@ namespace Swall.Tasks
                     continue;
                 }
 
-                WriteToConsole($"Deleting {match.Path}");
+                WriteToConsole($"Deleting {path}");
 
                 await FileAccessor.Delete(matchPath);
             }

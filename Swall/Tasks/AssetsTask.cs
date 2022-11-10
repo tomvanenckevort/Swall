@@ -62,12 +62,12 @@ namespace Swall.Tasks
 
                 var srcMatchResult = srcMatcher.Execute(new DirectoryInfoWrapper(srcDirectory));
 
-                foreach (var match in srcMatchResult.Files)
+                foreach (var stem in srcMatchResult.Files.Select(m => m.Stem))
                 {
-                    WriteToConsole($"Copying {match.Stem}");
+                    WriteToConsole($"Copying {stem}");
 
-                    var srcPath = Path.GetFullPath(match.Stem, srcDirectory.FullName);
-                    var destPath = Path.GetFullPath(match.Stem, destDirectory.FullName);
+                    var srcPath = Path.GetFullPath(stem, srcDirectory.FullName);
+                    var destPath = Path.GetFullPath(stem, destDirectory.FullName);
 
                     var destDirectoryPath = Path.GetDirectoryName(destPath);
 
