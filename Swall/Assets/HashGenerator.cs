@@ -10,6 +10,8 @@ namespace Swall.Assets
 {
     internal sealed class HashGenerator
     {
+        private static readonly UTF8Encoding UTF8WithoutBOM = new UTF8Encoding(false);
+
         /// <summary>
         /// Placeholder used during the file content generation and to be replaced with the generated hash afterwards.
         /// </summary>
@@ -22,7 +24,7 @@ namespace Swall.Assets
         /// <returns></returns>
         public static string GenerateRevisionHash(string content)
         {
-            var contentBytes = Encoding.UTF8.GetBytes(content);
+            var contentBytes = UTF8WithoutBOM.GetBytes(content);
 
             var hash = SHA256.HashData(contentBytes);
 

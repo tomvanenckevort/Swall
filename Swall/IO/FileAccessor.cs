@@ -9,6 +9,8 @@ namespace Swall.IO
 {
     internal static class FileAccessor
     {
+        private static readonly UTF8Encoding UTF8WithoutBOM = new UTF8Encoding(false);
+
         private static readonly Dictionary<string, SemaphoreSlim> semaphores = new();
 
         private static SemaphoreSlim GetSemaphore(string path)
@@ -67,7 +69,7 @@ namespace Swall.IO
         {
             path = NormalizePath(path);
 
-            return await ExecuteWithSemaphore(path, async () => await File.ReadAllTextAsync(path, Encoding.UTF8));
+            return await ExecuteWithSemaphore(path, async () => await File.ReadAllTextAsync(path, UTF8WithoutBOM));
         }
 
         public static async Task<byte[]> ReadAllBytes(string path)
@@ -81,7 +83,7 @@ namespace Swall.IO
         {
             path = NormalizePath(path);
 
-            await ExecuteWithSemaphore(path, async () => { await File.WriteAllTextAsync(path, contents, Encoding.UTF8); return default(object); });
+            await ExecuteWithSemaphore(path, async () => { await File.WriteAllTextAsync(path, contents, UTF8WithoutBOM); return default(object); });
         }
 
         public static async Task Copy(string sourceFileName, string destFileName, bool overwrite)
