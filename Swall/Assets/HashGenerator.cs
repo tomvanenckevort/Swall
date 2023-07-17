@@ -8,9 +8,9 @@ using Swall.IO;
 
 namespace Swall.Assets
 {
-    internal sealed class HashGenerator
+    internal static class HashGenerator
     {
-        private static readonly UTF8Encoding UTF8WithoutBOM = new UTF8Encoding(false);
+        private static readonly UTF8Encoding UTF8WithoutBOM = new(false);
 
         /// <summary>
         /// Placeholder used during the file content generation and to be replaced with the generated hash afterwards.

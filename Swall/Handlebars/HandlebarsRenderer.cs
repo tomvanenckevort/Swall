@@ -159,9 +159,9 @@ namespace Swall.Handlebars
                         {
                             foreach (var pageField in pageFields)
                             {
-                                if (frontMatter.ContainsKey(pageField))
+                                if (frontMatter.TryGetValue(pageField, out var pageFieldValue))
                                 {
-                                    page.Add(pageField, frontMatter[pageField]);
+                                    page.Add(pageField, pageFieldValue);
                                 }
                             }
                         }

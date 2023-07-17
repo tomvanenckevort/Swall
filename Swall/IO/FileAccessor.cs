@@ -9,7 +9,7 @@ namespace Swall.IO
 {
     internal static class FileAccessor
     {
-        private static readonly UTF8Encoding UTF8WithoutBOM = new UTF8Encoding(false);
+        private static readonly UTF8Encoding UTF8WithoutBOM = new(false);
 
         private static readonly Dictionary<string, SemaphoreSlim> semaphores = new();
 

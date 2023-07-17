@@ -8,7 +8,7 @@ using Swall.Runner;
 
 namespace Swall
 {
-    internal sealed class Program
+    internal static class Program
     {
         private static async Task Main(string[] args)
         {

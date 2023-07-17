@@ -1,4 +1,5 @@
-﻿using Markdig;
+﻿using System.Linq;
+using Markdig;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
@@ -24,16 +25,13 @@ namespace Swall.Markdown
 
         private void Pipeline_DocumentProcessed(MarkdownDocument document)
         {
-            foreach (var node in document.Descendants())
+            foreach (var node in document.Descendants().Where(n => n is Inline))
             {
-                if (node is Inline)
-                {
-                    var link = node as LinkInline;
+                var link = node as LinkInline;
 
-                    if (link?.Url?.StartsWith("http") == true)
-                    {
-                        link.GetAttributes().AddProperty("rel", "noopener noreferrer");
-                    }
+                if (link?.Url?.StartsWith("http") == true)
+                {
+                    link.GetAttributes().AddProperty("rel", "noopener noreferrer");
                 }
             }
         }
