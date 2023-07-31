@@ -88,13 +88,20 @@ namespace Swall.Handlebars
 
                 var integrity = HashGenerator.GenerateIntegrityHash(Path.GetFullPath(revisionFilePath, assetsSrcDirectory.FullName)).Result;
 
+                var additionalAttributes = string.Empty;
+
+                if (arguments.Length > 1)
+                {
+                    additionalAttributes = $" {arguments[1]}";
+                }
+
                 switch (fileExtension)
                 {
                     case ".css":
-                        writer.WriteSafeString($"<link href=\"{assetPath}\" integrity=\"{integrity}\" crossorigin=\"anonymous\" rel=\"stylesheet\" />");
+                        writer.WriteSafeString($"<link href=\"{assetPath}\" integrity=\"{integrity}\" crossorigin=\"anonymous\" rel=\"stylesheet\"{(additionalAttributes)} />");
                         break;
                     case ".js":
-                        writer.WriteSafeString($"<script src=\"{assetPath}\" integrity=\"{integrity}\" crossorigin=\"anonymous\"></script>");
+                        writer.WriteSafeString($"<script src=\"{assetPath}\" integrity=\"{integrity}\" crossorigin=\"anonymous\"{(additionalAttributes)}></script>");
                         break;
                 }
             });
