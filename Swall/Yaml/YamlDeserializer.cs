@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using SharpYaml.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using VYaml.Parser;
 
 namespace Swall.Yaml
 {
@@ -16,71 +16,116 @@ namespace Swall.Yaml
         {
             var dictionary = new Dictionary<string, object>();
 
-            using var stringReader = new StringReader(yaml);
+            var yamlBytes = new Memory<byte>(Encoding.UTF8.GetBytes(yaml));
 
-            var stream = new YamlStream();
-            stream.Load(stringReader);
+            var parser = YamlParser.FromBytes(yamlBytes);
 
-            if (stream.Documents?.Count < 1)
+            parser.SkipAfter(ParseEventType.DocumentStart);
+
+            parser.Read();
+
+            while (!parser.End)
             {
-                return dictionary;
+                var key = ConvertToObject(ref parser);
+
+                var value = ConvertToObject(ref parser);
+
+                if (key is string keyStr)
+                {
+                    dictionary.Add(keyStr, value);
+                }
             }
 
-            var document = stream.Documents[0];
-
-            if (document.AllNodes.FirstOrDefault() is not YamlMappingNode mappingNode)
-            {
-                return dictionary;
-            }
-
-            dictionary = ConvertToObject(mappingNode) as Dictionary<string, object>;
+            parser.Dispose();
 
             return dictionary;
         }
 
         /// <summary>
-        /// Converts YAML node value to the appropriate object.
+        /// Converts YAML node values to the appropriate object.
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="parser"></param>
         /// <returns></returns>
-        private object ConvertToObject(YamlNode node)
+        private object ConvertToObject(ref YamlParser parser)
         {
-            if (node is YamlMappingNode mappingNode)
+            if (parser.CurrentEventType == ParseEventType.MappingStart)
             {
-                var values = new Dictionary<string, object>(mappingNode.Children.Count);
+                var values = new Dictionary<string, object>();
 
-                foreach (var pair in mappingNode.Children)
+                parser.SkipAfter(ParseEventType.MappingStart);
+
+                while (!parser.End && parser.CurrentEventType != ParseEventType.MappingEnd)
                 {
-                    var key = pair.Key.ToString();
+                    var key = ConvertToObject(ref parser);
 
-                    var value = ConvertToObject(pair.Value);
+                    var value = ConvertToObject(ref parser);
 
-                    values.Add(key, value);
+                    if (key is string keyStr)
+                    {
+                        values.Add(keyStr, value);
+                    }
                 }
+
+                parser.SkipAfter(ParseEventType.MappingEnd);
 
                 return values;
             }
-            else if (node is YamlScalarNode scalarNode)
+            else if (parser.CurrentEventType == ParseEventType.Scalar)
             {
-                return scalarNode.Value;
-            }
-            else if (node is YamlSequenceNode sequenceNode)
-            {
-                var values = new object[sequenceNode.Children.Count];
+                object scalarResult;
 
-                var index = 0;
-
-                foreach (var child in sequenceNode.Children)
+                if (parser.TryGetScalarAsBool(out var scalarBool))
                 {
-                    values[index] = ConvertToObject(child);
-
-                    index++;
+                    scalarResult = scalarBool;
+                }
+                else if (parser.TryGetScalarAsDouble(out var scalarDouble))
+                {
+                    scalarResult = scalarDouble;
+                }
+                else if (parser.TryGetScalarAsFloat(out var scalarFloat))
+                {
+                    scalarResult = scalarFloat;
+                }
+                else if (parser.TryGetScalarAsInt32(out var scalarInt32))
+                {
+                    scalarResult = scalarInt32;
+                }
+                else if (parser.TryGetScalarAsInt64(out var scalarInt64))
+                {
+                    scalarResult = scalarInt64;
+                }
+                else if (parser.TryGetScalarAsString(out var scalarString))
+                {
+                    scalarResult = scalarString;
+                }
+                else
+                {
+                    scalarResult = null;
                 }
 
-                return values;
+                parser.Read();
+
+                return scalarResult;
+            }
+            else if (parser.CurrentEventType == ParseEventType.SequenceStart)
+            {
+                var values = new List<object>();
+
+                parser.SkipAfter(ParseEventType.SequenceStart);
+
+                while (!parser.End && parser.CurrentEventType != ParseEventType.SequenceEnd)
+                {
+                    values.Add(ConvertToObject(ref parser));
+                }
+
+                parser.SkipAfter(ParseEventType.SequenceEnd);
+
+                return values.ToArray();
             }
             else
             {
+                parser.Read();
+
                 return null;
             }
         }
