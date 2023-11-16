@@ -17,6 +17,8 @@ namespace Swall.Server
 
         private readonly StaticFileMiddleware staticFileMiddleware;
 
+        private static string[] defaultFileNames = new string[] { "index.html" };
+
         /// <summary>
         /// Creates instance of HttpApplication with the required middleware for hosting a static file site.
         /// </summary>
@@ -36,7 +38,7 @@ namespace Swall.Server
                 Options.Create(new DefaultFilesOptions()
                 {
                     FileProvider = fileProvider,
-                    DefaultFileNames = new string[] { "index.html" }
+                    DefaultFileNames = defaultFileNames
                 }));
 
             staticFileMiddleware = new StaticFileMiddleware(

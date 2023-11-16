@@ -5,14 +5,14 @@ using VYaml.Parser;
 
 namespace Swall.Yaml
 {
-    internal sealed class YamlDeserializer
+    internal static class YamlDeserializer
     {
         /// <summary>
         /// Deserializes YAML string and returns a dictionary containing the YAML keys and values.
         /// </summary>
         /// <param name="yaml"></param>
         /// <returns></returns>
-        public Dictionary<string, object> Deserialize(string yaml)
+        public static Dictionary<string, object> Deserialize(string yaml)
         {
             var dictionary = new Dictionary<string, object>();
 
@@ -46,7 +46,7 @@ namespace Swall.Yaml
         /// </summary>
         /// <param name="parser"></param>
         /// <returns></returns>
-        private object ConvertToObject(ref YamlParser parser)
+        private static object ConvertToObject(ref YamlParser parser)
         {
             if (parser.CurrentEventType == ParseEventType.MappingStart)
             {

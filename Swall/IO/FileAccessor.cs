@@ -15,12 +15,14 @@ namespace Swall.IO
 
         private static SemaphoreSlim GetSemaphore(string path)
         {
-            if (!semaphores.ContainsKey(path))
+            if (!semaphores.TryGetValue(path, out var semaphore))
             {
-                semaphores.Add(path, new SemaphoreSlim(1, 1));
+                semaphore = new SemaphoreSlim(1, 1);
+
+                semaphores.Add(path, semaphore);
             }
 
-            return semaphores[path];
+            return semaphore;
         }
 
         private static async Task<T> ExecuteWithSemaphore<T>(string path, Func<Task<T>> function)

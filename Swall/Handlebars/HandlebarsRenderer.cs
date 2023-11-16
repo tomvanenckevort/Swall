@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -118,7 +119,7 @@ namespace Swall.Handlebars
                     return;
                 }
 
-                if (DateTime.TryParse(arguments[0].ToString(), out var date))
+                if (DateTime.TryParse(arguments[0].ToString(), CultureInfo.InvariantCulture, out var date))
                 {
                     writer.WriteSafeString(date.ToString("dd MMMM yyyy"));
                 }
@@ -130,7 +131,7 @@ namespace Swall.Handlebars
 
                 //find all matching child pages
                 var pageDirectoryPath = options.Data.Value<Dictionary<string, object>>(ChainSegment.Root)["directoryPath"]?.ToString();
-                var pageTemplates = (hash.ContainsKey("pageTemplates") ? hash["pageTemplates"] as string[] : null);
+                var pageTemplates = (hash.TryGetValue("pageTemplates", out var pageTemplatesObj) ? pageTemplatesObj as string[] : null);
 
                 var pageMatcher = new Matcher();
                 pageMatcher.AddInclude($"**/*.md");
@@ -175,9 +176,9 @@ namespace Swall.Handlebars
                     }
                 }
 
-                if (hash.ContainsKey("sort") && hash["sort"] is string sort)
+                if (hash.TryGetValue("sort", out var sortObj) && sortObj is string sort)
                 {
-                    if (hash.ContainsKey("sortDirection") && hash["sortDirection"]?.ToString() == "desc")
+                    if (hash.TryGetValue("sortDirection", out var sortDirectionObj) && sortDirectionObj?.ToString() == "desc")
                     {
                         pages = pages.OrderByDescending(p => p[sort]).ToList();
                     }

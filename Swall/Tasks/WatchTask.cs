@@ -67,7 +67,7 @@ namespace Swall.Tasks
 
                 var watcherChangeTypes = new List<WatcherChangeTypes>();
 
-                if (watch.Value.On?.Any() == true)
+                if (watch.Value.On?.Length > 0)
                 {
                     foreach (var on in watch.Value.On)
                     {

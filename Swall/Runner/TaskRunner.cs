@@ -13,7 +13,7 @@ namespace Swall.Runner
 {
     internal sealed class TaskRunner
     {
-        private readonly IReadOnlyDictionary<string, SwallTask> availableTasks;
+        private readonly Dictionary<string, SwallTask> availableTasks;
 
         private readonly ConcurrentQueue<string> taskQueue;
 
@@ -60,11 +60,9 @@ namespace Swall.Runner
                 throw new ArgumentException($"Cannot load {path}", nameof(path));
             }
 
-            var yamlDeserializer = new YamlDeserializer();
-
             var yaml = await FileAccessor.ReadAllText(path);
 
-            var dictionary = yamlDeserializer.Deserialize(yaml);
+            var dictionary = YamlDeserializer.Deserialize(yaml);
 
             return dictionary;
         }
@@ -96,7 +94,7 @@ namespace Swall.Runner
                         }
                         else
                         {
-                            Thread.Sleep(250);
+                            await Task.Delay(250);
                         }
                     }
                 }));

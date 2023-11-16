@@ -14,16 +14,12 @@ namespace Swall.Markdown
     {
         private readonly MarkdownPipeline pipeline;
 
-        private readonly YamlDeserializer yamlDeserializer;
-
         public MarkdownParser()
         {
             pipeline = new MarkdownPipelineBuilder()
                                 .UseYamlFrontMatter()
                                 .Use<ExternalLinksMarkdownExtension>()
                                 .Build();
-
-            yamlDeserializer = new YamlDeserializer();
         }
 
         /// <summary>
@@ -46,7 +42,7 @@ namespace Swall.Markdown
 
             var frontMatterYaml = input.Substring(frontMatterBlock.Span.Start, frontMatterBlock.Span.Length).Trim('-');
 
-            var frontMatter = yamlDeserializer.Deserialize(frontMatterYaml);
+            var frontMatter = YamlDeserializer.Deserialize(frontMatterYaml);
 
             var content = markdownDoc.ToHtml(pipeline);
 
