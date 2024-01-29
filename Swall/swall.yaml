@@ -1,6 +1,6 @@
 ---
 clean:
-  src: "../../../../dist"
+  src: "../../../dist"
   subTasks:
   - patterns:
     - "**/*.html"
@@ -21,40 +21,40 @@ clean:
 
 server:
   port: '3000'
-  path: "../../../../dist"
+  path: "../../../dist"
 
 scss:
-  src: "../../../../src/scss"
-  dest: "../../../../dist/assets/css"
+  src: "../../../src/scss"
+  dest: "../../../dist/assets/css"
   minify: true
 
 js:
-  src: "../../../../src/js"
-  dest: "../../../../dist/assets/js"
+  src: "../../../src/js"
+  dest: "../../../dist/assets/js"
   minify: true
 
 assets:
-  "../../../../src/content/journal/**/*.jpg": "../../../../dist/journal"
+  "../../../src/content/journal/**/*.jpg": "../../../dist/journal"
 
 html:
   src:
-    content: "../../../../src/content"
-    templates: "../../../../src/templates"
-    assets: "../../../../dist/assets"
-  dest: "../../../../dist"
+    content: "../../../src/content"
+    templates: "../../../src/templates"
+    assets: "../../../dist/assets"
+  dest: "../../../dist"
 
 sitemap:
-  src: "../../../../dist"
+  src: "../../../dist"
   patterns:
   - "**/*.html"
   - "!**/404.html"
   - "!**/500.html"
-  dest: "../../../../dist/sitemap.xml"
-  robots: "../../../../dist/robots.txt"
+  dest: "../../../dist/sitemap.xml"
+  robots: "../../../dist/robots.txt"
   site: https://tom.van.enckevort.org
 
 watch:
-  root: "../../../../"
+  root: "../../../"
   watches:
   - patterns:
     - src/content/**/*.md

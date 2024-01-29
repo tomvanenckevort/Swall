@@ -36,8 +36,6 @@ namespace Swall.Yaml
                 }
             }
 
-            parser.Dispose();
-
             return dictionary;
         }
 

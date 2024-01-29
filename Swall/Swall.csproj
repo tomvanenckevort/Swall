@@ -3,15 +3,15 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <PublishAot>true</PublishAot>
     <IlcGenerateMstatFile>true</IlcGenerateMstatFile>
     <IlcGenerateDgmlFile>true</IlcGenerateDgmlFile>
     <IlcTrimMetadata>true</IlcTrimMetadata>
     <IlcDisableReflection>false</IlcDisableReflection>
-    <IlcOptimizationPreference>Size</IlcOptimizationPreference>
+    <OptimizationPreference>Size</OptimizationPreference>
     <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
-    <IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
+    <StackTraceSupport>false</StackTraceSupport>
     <IlcDisableUnhandledExceptionExperience>true</IlcDisableUnhandledExceptionExperience>
     <InvariantGlobalization>true</InvariantGlobalization>
     <UseSystemResourceKeys>true</UseSystemResourceKeys>
@@ -49,18 +49,18 @@
     <Reference Include="$(NetCoreRoot)\shared\Microsoft.AspNetCore.App\$(BundledNETCoreAppPackageVersion)\Microsoft.AspNetCore.StaticFiles.dll" />
     <Reference Include="$(NetCoreRoot)\shared\Microsoft.AspNetCore.App\$(BundledNETCoreAppPackageVersion)\System.IO.Pipelines.dll" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Features" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Features" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
 
-    <PackageReference Include="LibSassHost" Version="1.3.3" />
-    <PackageReference Include="Markdig" Version="0.33.0" />
-    <PackageReference Include="NUglify" Version="1.21.0" />
+    <PackageReference Include="LibSassHost" Version="1.4.0" />
+    <PackageReference Include="Markdig" Version="0.34.0" />
+    <PackageReference Include="NUglify" Version="1.21.2" />
     <PackageReference Include="Handlebars.Net" Version="2.1.4" />
-    <PackageReference Include="PublishAotCompressed" Version="1.0.2" />
-    <PackageReference Include="VYaml.Core" Version="0.14.1" />
+    <PackageReference Include="PublishAotCompressed" Version="1.0.3" />
+    <PackageReference Include="VYaml.Core" Version="0.20.0" />
   </ItemGroup>
 
   <ItemGroup>
