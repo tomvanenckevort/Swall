@@ -49,16 +49,16 @@
     <Reference Include="$(NetCoreRoot)\shared\Microsoft.AspNetCore.App\$(BundledNETCoreAppPackageVersion)\Microsoft.AspNetCore.StaticFiles.dll" />
     <Reference Include="$(NetCoreRoot)\shared\Microsoft.AspNetCore.App\$(BundledNETCoreAppPackageVersion)\System.IO.Pipelines.dll" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Features" Version="8.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Features" Version="8.0.6" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
 
     <PackageReference Include="LibSassHost" Version="1.4.0" />
-    <PackageReference Include="Markdig" Version="0.36.2" />
-    <PackageReference Include="NUglify" Version="1.21.4" />
-    <PackageReference Include="Handlebars.Net" Version="2.1.4" />
+    <PackageReference Include="Markdig" Version="0.37.0" />
+    <PackageReference Include="NUglify" Version="1.21.7" />
+    <PackageReference Include="Handlebars.Net" Version="2.1.6" />
     <PackageReference Include="PublishAotCompressed" Version="1.0.3" />
     <PackageReference Include="VYaml.Core" Version="0.20.0" />
   </ItemGroup>
